@@ -1,0 +1,4 @@
+# Install the enclosing LightRAG checkout as well (see README).
+fastembed==0.9.1
+filelock>=3.13,<5
+openai>=2,<4

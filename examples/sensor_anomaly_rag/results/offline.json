@@ -1,0 +1,282 @@
+{
+  "backend": "offline_fixture",
+  "retrieval": {
+    "mode": "naive",
+    "top_k": 5,
+    "chunk_top_k": 5,
+    "enable_rerank": false
+  },
+  "chat_model": null,
+  "embedding_model": null,
+  "corpus": [
+    "ph-calibration.md",
+    "ph-drop.md",
+    "site-log-A-0108-cal.md",
+    "site-log-A-0115-clean.md",
+    "site-log-B-0115-cal.md"
+  ],
+  "summary": {
+    "fixed_retrieval": {
+      "cases_with_wrong_site_logs": 3,
+      "cases_with_outside_window_logs": 3,
+      "exact_log_sets": 0,
+      "abstained_on_event_cases": 2,
+      "correct_observation_cases": 0,
+      "detected_no_observations": false,
+      "manual_only_case_has_manual": true
+    },
+    "event_review": {
+      "cases_with_wrong_site_logs": 0,
+      "cases_with_outside_window_logs": 0,
+      "exact_log_sets": 3,
+      "abstained_on_event_cases": 2,
+      "correct_observation_cases": 2,
+      "detected_no_observations": true,
+      "manual_only_case_has_manual": true
+    }
+  },
+  "cases": [
+    {
+      "case": "same-site-log",
+      "expected_log_ids": [
+        "A-0115-clean"
+      ],
+      "fixed_retrieval": {
+        "cited_passages": [
+          {
+            "source": "ph-calibration.md",
+            "reference_id": "1",
+            "chunk_id": "fixture-1",
+            "excerpt": "# pH 探头维护与校准核对\n\n复核 pH 突降时，检查探头清洗后是否按规定重新浸润，记录稳定前后的读数。复核最近一次两点校准的缓冲液有效期、温度补偿、斜率和零点，保留校准前后原始记录。校准失败时按站点规程安排复检并记录复检结果。"
+          },
+          {
+            "source": "ph-drop.md",
+            "reference_id": "2",
+            "chunk_id": "fixture-2",
+            "excerpt": "# pH 突降复核\n\n在线 pH 突然低于预设基线时，先核对测量时间、采样链路和同期的维护与校准工单。调取同站同期的留样或可追溯的独立 pH 测量，记录采样时间、水温和复测仪器，检查水样复测是否也偏低。\n\n对照突降前后的连续读数，排查停流、气泡、供电和传输状态，查看探头复位后读数是否稳定。工单中的操作时间可供对照，原因判断需要对应水样或仪表检查结果。"
+          },
+          {
+            "source": "site-log-A-0108-cal.md",
+            "reference_id": "3",
+            "chunk_id": "fixture-3",
+            "excerpt": "# pH 运维日志 A-0108-cal\n\n站点 A，记录时间 2026-01-08T14:00:00+00:00，类型 校准。\n发现缓冲液超出有效期，暂停 pH 校准，次日安排更换缓冲液。"
+          },
+          {
+            "source": "site-log-A-0115-clean.md",
+            "reference_id": "4",
+            "chunk_id": "fixture-4",
+            "excerpt": "# pH 运维日志 A-0115-clean\n\n站点 A，记录时间 2026-01-15T13:45:00+00:00，类型 维护。\n值班员清洗了 pH 探头，工单未记录清洗前后的独立水样复测或探头响应检查。"
+          },
+          {
+            "source": "site-log-B-0115-cal.md",
+            "reference_id": "5",
+            "chunk_id": "fixture-5",
+            "excerpt": "# pH 运维日志 B-0115-cal\n\n站点 B，记录时间 2026-01-15T14:00:00+00:00，类型 校准。\npH 探头两点校准斜率低于站内允收范围，记录为校准失败并提交复检工单。"
+          }
+        ],
+        "site_log_ids": [
+          "A-0108-cal",
+          "A-0115-clean",
+          "B-0115-cal"
+        ],
+        "cause_assessment": "当前证据不足以确定原因",
+        "observation_status": "not_checked",
+        "observation_correct": null,
+        "wrong_site_log_ids": [
+          "B-0115-cal"
+        ],
+        "outside_window_log_ids": [
+          "A-0108-cal"
+        ],
+        "expected_log_set_match": false
+      },
+      "event_review": {
+        "events": [
+          {
+            "site": "A",
+            "time_utc": "2026-01-15T14:00:00+00:00",
+            "observed_ph": "5.85",
+            "baseline_ph": "7.20",
+            "deviation": "-1.35"
+          }
+        ],
+        "cited_passages": [
+          {
+            "source": "ph-calibration.md",
+            "reference_id": "1",
+            "chunk_id": "fixture-1",
+            "excerpt": "# pH 探头维护与校准核对\n\n复核 pH 突降时，检查探头清洗后是否按规定重新浸润，记录稳定前后的读数。复核最近一次两点校准的缓冲液有效期、温度补偿、斜率和零点，保留校准前后原始记录。校准失败时按站点规程安排复检并记录复检结果。"
+          },
+          {
+            "source": "ph-drop.md",
+            "reference_id": "2",
+            "chunk_id": "fixture-2",
+            "excerpt": "# pH 突降复核\n\n在线 pH 突然低于预设基线时，先核对测量时间、采样链路和同期的维护与校准工单。调取同站同期的留样或可追溯的独立 pH 测量，记录采样时间、水温和复测仪器，检查水样复测是否也偏低。\n\n对照突降前后的连续读数，排查停流、气泡、供电和传输状态，查看探头复位后读数是否稳定。工单中的操作时间可供对照，原因判断需要对应水样或仪表检查结果。"
+          }
+        ],
+        "site_log_ids": [
+          "A-0115-clean"
+        ],
+        "cause_assessment": "当前证据不足以确定原因",
+        "observation_status": "observed",
+        "observation_correct": true,
+        "wrong_site_log_ids": [],
+        "outside_window_log_ids": [],
+        "expected_log_set_match": true
+      }
+    },
+    {
+      "case": "manual-only",
+      "expected_log_ids": [],
+      "fixed_retrieval": {
+        "cited_passages": [
+          {
+            "source": "ph-calibration.md",
+            "reference_id": "1",
+            "chunk_id": "fixture-1",
+            "excerpt": "# pH 探头维护与校准核对\n\n复核 pH 突降时，检查探头清洗后是否按规定重新浸润，记录稳定前后的读数。复核最近一次两点校准的缓冲液有效期、温度补偿、斜率和零点，保留校准前后原始记录。校准失败时按站点规程安排复检并记录复检结果。"
+          },
+          {
+            "source": "ph-drop.md",
+            "reference_id": "2",
+            "chunk_id": "fixture-2",
+            "excerpt": "# pH 突降复核\n\n在线 pH 突然低于预设基线时，先核对测量时间、采样链路和同期的维护与校准工单。调取同站同期的留样或可追溯的独立 pH 测量，记录采样时间、水温和复测仪器，检查水样复测是否也偏低。\n\n对照突降前后的连续读数，排查停流、气泡、供电和传输状态，查看探头复位后读数是否稳定。工单中的操作时间可供对照，原因判断需要对应水样或仪表检查结果。"
+          },
+          {
+            "source": "site-log-A-0108-cal.md",
+            "reference_id": "3",
+            "chunk_id": "fixture-3",
+            "excerpt": "# pH 运维日志 A-0108-cal\n\n站点 A，记录时间 2026-01-08T14:00:00+00:00，类型 校准。\n发现缓冲液超出有效期，暂停 pH 校准，次日安排更换缓冲液。"
+          },
+          {
+            "source": "site-log-A-0115-clean.md",
+            "reference_id": "4",
+            "chunk_id": "fixture-4",
+            "excerpt": "# pH 运维日志 A-0115-clean\n\n站点 A，记录时间 2026-01-15T13:45:00+00:00，类型 维护。\n值班员清洗了 pH 探头，工单未记录清洗前后的独立水样复测或探头响应检查。"
+          },
+          {
+            "source": "site-log-B-0115-cal.md",
+            "reference_id": "5",
+            "chunk_id": "fixture-5",
+            "excerpt": "# pH 运维日志 B-0115-cal\n\n站点 B，记录时间 2026-01-15T14:00:00+00:00，类型 校准。\npH 探头两点校准斜率低于站内允收范围，记录为校准失败并提交复检工单。"
+          }
+        ],
+        "site_log_ids": [
+          "A-0108-cal",
+          "A-0115-clean",
+          "B-0115-cal"
+        ],
+        "cause_assessment": "当前证据不足以确定原因",
+        "observation_status": "not_checked",
+        "observation_correct": null,
+        "wrong_site_log_ids": [
+          "A-0108-cal",
+          "A-0115-clean",
+          "B-0115-cal"
+        ],
+        "outside_window_log_ids": [
+          "A-0108-cal"
+        ],
+        "expected_log_set_match": false
+      },
+      "event_review": {
+        "events": [
+          {
+            "site": "C",
+            "time_utc": "2026-01-15T14:00:00+00:00",
+            "observed_ph": "6.12",
+            "baseline_ph": "7.05",
+            "deviation": "-0.93"
+          }
+        ],
+        "cited_passages": [
+          {
+            "source": "ph-calibration.md",
+            "reference_id": "1",
+            "chunk_id": "fixture-1",
+            "excerpt": "# pH 探头维护与校准核对\n\n复核 pH 突降时，检查探头清洗后是否按规定重新浸润，记录稳定前后的读数。复核最近一次两点校准的缓冲液有效期、温度补偿、斜率和零点，保留校准前后原始记录。校准失败时按站点规程安排复检并记录复检结果。"
+          },
+          {
+            "source": "ph-drop.md",
+            "reference_id": "2",
+            "chunk_id": "fixture-2",
+            "excerpt": "# pH 突降复核\n\n在线 pH 突然低于预设基线时，先核对测量时间、采样链路和同期的维护与校准工单。调取同站同期的留样或可追溯的独立 pH 测量，记录采样时间、水温和复测仪器，检查水样复测是否也偏低。\n\n对照突降前后的连续读数，排查停流、气泡、供电和传输状态，查看探头复位后读数是否稳定。工单中的操作时间可供对照，原因判断需要对应水样或仪表检查结果。"
+          }
+        ],
+        "site_log_ids": [],
+        "cause_assessment": "当前证据不足以确定原因",
+        "observation_status": "observed",
+        "observation_correct": true,
+        "wrong_site_log_ids": [],
+        "outside_window_log_ids": [],
+        "expected_log_set_match": true
+      }
+    },
+    {
+      "case": "no-observations",
+      "expected_log_ids": [],
+      "fixed_retrieval": {
+        "cited_passages": [
+          {
+            "source": "ph-calibration.md",
+            "reference_id": "1",
+            "chunk_id": "fixture-1",
+            "excerpt": "# pH 探头维护与校准核对\n\n复核 pH 突降时，检查探头清洗后是否按规定重新浸润，记录稳定前后的读数。复核最近一次两点校准的缓冲液有效期、温度补偿、斜率和零点，保留校准前后原始记录。校准失败时按站点规程安排复检并记录复检结果。"
+          },
+          {
+            "source": "ph-drop.md",
+            "reference_id": "2",
+            "chunk_id": "fixture-2",
+            "excerpt": "# pH 突降复核\n\n在线 pH 突然低于预设基线时，先核对测量时间、采样链路和同期的维护与校准工单。调取同站同期的留样或可追溯的独立 pH 测量，记录采样时间、水温和复测仪器，检查水样复测是否也偏低。\n\n对照突降前后的连续读数，排查停流、气泡、供电和传输状态，查看探头复位后读数是否稳定。工单中的操作时间可供对照，原因判断需要对应水样或仪表检查结果。"
+          },
+          {
+            "source": "site-log-A-0108-cal.md",
+            "reference_id": "3",
+            "chunk_id": "fixture-3",
+            "excerpt": "# pH 运维日志 A-0108-cal\n\n站点 A，记录时间 2026-01-08T14:00:00+00:00，类型 校准。\n发现缓冲液超出有效期，暂停 pH 校准，次日安排更换缓冲液。"
+          },
+          {
+            "source": "site-log-A-0115-clean.md",
+            "reference_id": "4",
+            "chunk_id": "fixture-4",
+            "excerpt": "# pH 运维日志 A-0115-clean\n\n站点 A，记录时间 2026-01-15T13:45:00+00:00，类型 维护。\n值班员清洗了 pH 探头，工单未记录清洗前后的独立水样复测或探头响应检查。"
+          },
+          {
+            "source": "site-log-B-0115-cal.md",
+            "reference_id": "5",
+            "chunk_id": "fixture-5",
+            "excerpt": "# pH 运维日志 B-0115-cal\n\n站点 B，记录时间 2026-01-15T14:00:00+00:00，类型 校准。\npH 探头两点校准斜率低于站内允收范围，记录为校准失败并提交复检工单。"
+          }
+        ],
+        "site_log_ids": [
+          "A-0108-cal",
+          "A-0115-clean",
+          "B-0115-cal"
+        ],
+        "cause_assessment": "当前证据不足以确定原因",
+        "observation_status": "not_checked",
+        "observation_correct": null,
+        "wrong_site_log_ids": [
+          "B-0115-cal"
+        ],
+        "outside_window_log_ids": [
+          "A-0108-cal",
+          "A-0115-clean",
+          "B-0115-cal"
+        ],
+        "expected_log_set_match": false
+      },
+      "event_review": {
+        "events": [],
+        "cited_passages": [],
+        "site_log_ids": [],
+        "cause_assessment": null,
+        "observation_status": "no_observations",
+        "observation_correct": null,
+        "wrong_site_log_ids": [],
+        "outside_window_log_ids": [],
+        "expected_log_set_match": true
+      }
+    }
+  ]
+}
