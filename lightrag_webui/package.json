@@ -31,7 +31,7 @@
     "@radix-ui/react-use-controllable-state": "^1.3.0",
     "@react-sigma/core": "^5.0.6",
     "@react-sigma/graph-search": "^5.0.6",
-    "@react-sigma/layout-circlepack": "^5.0.6",
+    "@react-sigma/layout-circlepack": "^6.0.0",
     "@react-sigma/layout-circular": "^5.0.6",
     "@react-sigma/layout-force": "^5.0.6",
     "@react-sigma/layout-forceatlas2": "^5.0.6",
